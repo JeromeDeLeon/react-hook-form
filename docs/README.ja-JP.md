@@ -24,20 +24,21 @@
 <div align="center">
     <p align="center">
         <a href="https://react-hook-form.com/jp" title="React Hook Form - Simple React forms validation">
-            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="750px" />
+            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="100%" />
         </a>
     </p>
 </div>
 
-<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺English</a> | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | 🇯🇵 日本語 | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | <a href="./README.it-IT.md">🇮🇹Italiano</a> | <a href="./README.pt-BR.md">🇧🇷Português</a>
+<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺English</a> | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | 🇯🇵 日本語 | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | <a href="./README.it-IT.md">🇮🇹Italiano</a> | <a href="./README.pt-BR.md">🇧🇷Português</a> | <a href="./README.es-ES.md">🇪🇸Español</a> | <a href="./docs/README.ru-RU.md">🇷🇺Русский</a>
 
 ## 特徴
 
 - パフォーマンスと DX を念頭に構築
 - 非制御フォームバリデーション
+- コントロールされたフォームのパフォーマンスを向上させます
 - 依存関係のない[小さなサイズ](https://bundlephobia.com/result?p=react-hook-form@latest)
 - React Native との互換性
-- [Yup](https://github.com/jquense/yup) スキーマベースのバリデーションをサポート
+- [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi), [Superstruct](https://github.com/ianstormtaylor/superstruct) またはカスタムをサポート
 - ブラウザのネイティブバリデーションをサポート
 - [Form Builder](https://react-hook-form.com/jp/form-builder) でフォームを素早く作成
 
@@ -60,7 +61,7 @@
 
 ```jsx
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 function App() {
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
@@ -83,10 +84,18 @@ function App() {
 
 ## コントリビューター
 
-これらの素晴らしい人々に感謝します。[[コントリビューターになる](CONTRIBUTING.md)]
+これらの素晴らしい人々に感謝します![[コントリビューターになる](CONTRIBUTING.md)]
 
 <a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
     <img src="https://opencollective.com/react-hook-form/contributors.svg?width=950" />
+</a>
+
+## 組織
+
+これらの素晴らしい組織に感謝します! [[する](https://opencollective.com/react-hook-form/contribute)]
+
+<a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
+    <img src="https://opencollective.com/react-hook-form/organizations.svg?width=950" />
 </a>
 
 ## スポンサー

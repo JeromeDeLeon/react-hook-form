@@ -24,21 +24,22 @@
 <div align="center">
     <p align="center">
         <a href="https://react-hook-form.com" title="React Hook Form - Simple React forms validation">
-            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="750px" />
+            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="100%" />
         </a>
     </p>
 </div>
 
-<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺English</a> | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | <a href="./README.ja-JP.md">🇯🇵 日本語</a> | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | 🇮🇹Italiano | <a href="./README.pt-BR.md">🇧🇷Português</a>
+<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺English</a> | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | <a href="./README.ja-JP.md">🇯🇵 日本語</a> | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | 🇮🇹Italiano | <a href="./README.pt-BR.md">🇧🇷Português</a> | <a href="./README.es-ES.md">🇪🇸Español</a> | <a href="./docs/README.ru-RU.md">🇷🇺Русский</a>
 
 ## Caratteritiche
 
 - Sviluppata puntando l'attenzione su peformance ed esperienza di sviluppo
 - Validazione form di tipo 'uncontrolled'
+- Migliora le prestazioni della forma controllata
 - [Leggera](https://bundlephobia.com/result?p=react-hook-form@latest), senza nessuna dipendenza
 - Segue gli standard HTML per la validazione
 - Compatibile con React Native
-- Supporta lo schema di validazione [Yup](https://github.com/jquense/yup)
+- Supporta [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi), [Superstruct](https://github.com/ianstormtaylor/superstruct) o personalizzati
 - Supporta la validazione nativa del browser
 - Sviluppa form velocemente grazie al [form builder](https://react-hook-form.com/form-builder)
 
@@ -61,7 +62,7 @@
 
 ```jsx
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 function App() {
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
@@ -82,12 +83,20 @@ function App() {
 }
 ```
 
-## Contributor
+## Contributors
 
-Grazie a queste splendide persone. [[Diventa un contributor](CONTRIBUTING.md)].
+Grazie a queste splendide persone! [[Diventa un contributor](CONTRIBUTING.md)].
 
 <a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
     <img src="https://opencollective.com/react-hook-form/contributors.svg?width=950" />
+</a>
+
+## Organizzazioni
+
+Grazie a queste meravigliose organizzazioni! [[Contribuire](https://opencollective.com/react-hook-form/contribute)]
+
+<a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
+    <img src="https://opencollective.com/react-hook-form/organizations.svg?width=950" />
 </a>
 
 ## Sostenitori

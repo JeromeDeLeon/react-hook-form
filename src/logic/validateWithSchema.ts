@@ -1,22 +1,24 @@
 import appendErrors from './appendErrors';
 import isArray from '../utils/isArray';
-import { FieldValues, SchemaValidateOptions, FieldErrors } from '../types';
+import transformToNestObject from './transformToNestObject';
+import {
+  FieldValues,
+  SchemaValidateOptions,
+  FieldErrors,
+  ValidationResolver,
+  SchemaValidationResult,
+} from '../types';
 
-interface SchemaValidationResult<FormValues> {
-  fieldErrors: FieldErrors<FormValues>;
-  result: FieldValues;
-}
-
-interface YupValidationError {
+type YupValidationError = {
   inner: { path: string; message: string; type: string }[];
   path: string;
   message: string;
   type: string;
-}
+};
 
-interface Schema<Data> {
+type Schema<Data> = {
   validate(value: FieldValues, options?: SchemaValidateOptions): Promise<Data>;
-}
+};
 
 export const parseErrorSchema = <FormValues>(
   error: YupValidationError,
@@ -37,7 +39,7 @@ export const parseErrorSchema = <FormValues>(
                 ),
               }
             : {
-                [path]: {
+                [path]: previous[path] || {
                   message,
                   type,
                   ...(validateAllFieldCriteria
@@ -54,21 +56,34 @@ export const parseErrorSchema = <FormValues>(
         [error.path]: { message: error.message, type: error.type },
       };
 
-export default async function validateWithSchema<FormValues>(
+export default async function validateWithSchema<
+  FormValues extends FieldValues,
+  ValidationContext extends object
+>(
   validationSchema: Schema<FormValues>,
-  validationSchemaOption: SchemaValidateOptions,
   validateAllFieldCriteria: boolean,
-  data: FieldValues,
+  data: FormValues,
+  validationResolver?: ValidationResolver<FormValues, ValidationContext>,
+  context?: ValidationContext,
 ): Promise<SchemaValidationResult<FormValues>> {
+  if (validationResolver) {
+    return validationResolver(data, context);
+  }
+
   try {
     return {
-      result: await validationSchema.validate(data, validationSchemaOption),
-      fieldErrors: {},
+      values: await validationSchema.validate(data, {
+        abortEarly: false,
+        context,
+      }),
+      errors: {},
     };
   } catch (e) {
     return {
-      result: {},
-      fieldErrors: parseErrorSchema<FormValues>(e, validateAllFieldCriteria),
+      values: {},
+      errors: transformToNestObject(
+        parseErrorSchema<FormValues>(e, validateAllFieldCriteria),
+      ),
     };
   }
 }

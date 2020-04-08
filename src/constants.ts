@@ -6,7 +6,7 @@ export const VALIDATION_MODE: ValidationMode = {
   onSubmit: 'onSubmit',
 };
 
-export const RADIO_INPUT = 'radio';
+export const VALUE = 'value';
 
 export const UNDEFINED = 'undefined';
 
@@ -25,3 +25,8 @@ export const INPUT_VALIDATION_RULES = {
   required: 'required',
   validate: 'validate',
 };
+
+export const REGEX_IS_DEEP_PROP = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+export const REGEX_IS_PLAIN_PROP = /^\w*$/;
+export const REGEX_PROP_NAME = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+export const REGEX_ESCAPE_CHAR = /\\(\\)?/g;

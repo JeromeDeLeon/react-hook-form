@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 const Watch: React.FC = () => {
   const { register, handleSubmit, watch } = useForm<{
@@ -9,7 +9,7 @@ const Watch: React.FC = () => {
       firstName: string;
       lastName: string;
     };
-    toggle: boolean;
+    toggle: string;
   }>();
   const onSubmit = () => {};
   const test = watch('test');

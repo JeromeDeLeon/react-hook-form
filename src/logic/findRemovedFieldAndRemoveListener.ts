@@ -3,49 +3,60 @@ import isRadioInput from '../utils/isRadioInput';
 import isCheckBoxInput from '../utils/isCheckBoxInput';
 import isDetached from '../utils/isDetached';
 import isArray from '../utils/isArray';
+import unset from '../utils/unset';
 import { Field, FieldRefs, FieldValues } from '../types';
 
 export default function findRemovedFieldAndRemoveListener<
   FormValues extends FieldValues
 >(
   fields: FieldRefs<FormValues>,
-  validateWithStateUpdate: Function | undefined = () => {},
+  handleChange: ({ type, target }: Event) => Promise<void | boolean>,
   field: Field,
-  forceDelete?: boolean | undefined,
+  forceDelete?: boolean,
 ): void {
   if (!field) {
     return;
   }
 
-  const { ref, mutationWatcher } = field;
+  const {
+    ref,
+    ref: { name, type },
+    mutationWatcher,
+  } = field;
 
-  if (!ref.type || !fields[ref.name]) {
+  if (!type) {
+    delete fields[name];
     return;
   }
 
-  const { name, type } = ref;
-  const options = fields[name];
+  const fieldValue = fields[name];
 
-  if (isRadioInput(type) || isCheckBoxInput(type)) {
+  if ((isRadioInput(ref) || isCheckBoxInput(ref)) && fieldValue) {
+    const { options } = fieldValue;
+
     if (isArray(options) && options.length) {
-      options.forEach(({ ref }, index): void => {
-        const option = options[index];
-        if ((option && isDetached(ref)) || forceDelete) {
-          const mutationWatcher = option.mutationWatcher;
+      options
+        .filter(Boolean)
+        .forEach(({ ref, mutationWatcher }, index): void => {
+          if ((ref && isDetached(ref)) || forceDelete) {
+            removeAllEventListeners(ref, handleChange);
 
-          removeAllEventListeners(option, validateWithStateUpdate);
+            if (mutationWatcher) {
+              mutationWatcher.disconnect();
+            }
 
-          if (mutationWatcher) {
-            mutationWatcher.disconnect();
+            unset(options, [`[${index}]`]);
           }
-          options.splice(index, 1);
-        }
-      });
+        });
+
+      if (options && !options.filter(Boolean).length) {
+        delete fields[name];
+      }
     } else {
       delete fields[name];
     }
   } else if (isDetached(ref) || forceDelete) {
-    removeAllEventListeners(ref, validateWithStateUpdate);
+    removeAllEventListeners(ref, handleChange);
 
     if (mutationWatcher) {
       mutationWatcher.disconnect();

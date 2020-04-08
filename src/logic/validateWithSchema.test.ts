@@ -59,8 +59,9 @@ describe('validateWithSchema', () => {
             throw errors;
           },
         },
-        { abortEarly: false },
         false,
+        {},
+        undefined as any,
         {},
       ),
     ).toMatchSnapshot();
@@ -70,15 +71,24 @@ describe('validateWithSchema', () => {
     expect(
       await validateWithSchema(
         {
-          validate: () => new Promise(resolve => resolve()),
+          validate: () => new Promise((resolve) => resolve()) as any,
         },
-        { abortEarly: false },
         false,
+        {},
+        undefined as any,
         {},
       ),
     ).toEqual({
-      fieldErrors: {},
-      result: undefined,
+      errors: {},
+      values: undefined,
     });
   });
+});
+
+test('should invoke resolver function for custom schema validation', async () => {
+  const resolver = jest.fn();
+
+  await validateWithSchema({} as any, false, {}, resolver, {});
+
+  expect(resolver).toBeCalledWith({}, {});
 });

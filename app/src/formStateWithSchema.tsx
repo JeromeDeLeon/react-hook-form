@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 let renderCounter = 0;
@@ -50,7 +50,13 @@ const FormStateWithSchema: React.FC = (props: any) => {
       <button type="button" onClick={() => reset()} id="resetForm">
         Reset
       </button>
-      <div id="state">{JSON.stringify(formState)}</div>
+      <div id="state">
+        {JSON.stringify({
+          ...formState,
+          touched: Object.keys(formState.touched),
+          dirtyFields: [...formState.dirtyFields],
+        })}
+      </div>
       <div id="renderCount">{renderCounter}</div>
     </form>
   );

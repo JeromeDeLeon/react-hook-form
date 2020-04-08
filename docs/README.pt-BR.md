@@ -24,21 +24,22 @@
 <div align="center">
     <p align="center">
         <a href="https://react-hook-form.com" title="React Hook Form - Simple React forms validation">
-            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="750px" />
+            <img src="https://raw.githubusercontent.com/bluebill1049/react-hook-form/master/website/example.gif" alt="React Hook Form video - React custom hook for form validation" width="100%" />
         </a>
     </p>
 </div>
 
-<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺 English | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | <a href="./README.ja-JP.md">🇯🇵 日本語</a> | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | <a href="./README.it-IT.md">🇮🇹Italiano</a> | 🇧🇷Português</a>
+<a href="https://github.com/react-hook-form/react-hook-form">🇦🇺 English | <a href="./README.zh-CN.md">🇨🇳 简体中文</a> | <a href="./README.ja-JP.md">🇯🇵 日本語</a> | <a href="./README.ko-KR.md">🇰🇷한국어</a> | <a href="./README.fr-FR.md">🇫🇷Français</a> | <a href="./README.it-IT.md">🇮🇹Italiano</a> | 🇧🇷Português</a> | <a href="./README.es-ES.md">🇪🇸Español</a> | <a href="./docs/README.ru-RU.md">🇷🇺Русский</a>
 
 ## Funcionalidades
 
 - Contruído com performance e experiência do desenvolvedor em mente
 - Validação de formulários incontrolados
+- Melhore o desempenho do formulário controlado
 - [Baixo Custo](https://bundlephobia.com/result?p=react-hook-form@latest) sem nenhuma dependência
 - Segue as normas padrões de validação HTML
 - Compatível com React Native
-- Suporta [Yup](https://github.com/jquense/yup), que é um modelo de validação
+- Suporta [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi), [Superstruct](https://github.com/ianstormtaylor/superstruct) ou personalizado
 - Suporte nativo a validação do navegador
 - Possibilita construção rápida com [form builder](https://react-hook-form.com/form-builder)
 
@@ -50,18 +51,18 @@
 
 - [Motivação](https://medium.com/@bruce1049/form-validation-with-hook-in-3kb-c5414edf7d64)
 - [Video tutorial](https://www.youtube.com/watch?v=-mFXqOaqgZk&t)
-- [Como iniciar](https://react-hook-form.com/get-started)
-- [API](https://react-hook-form.com/api)
+- [Como iniciar](https://react-hook-form.com/pt/get-started)
+- [API](https://react-hook-form.com/pt/api)
 - [Exemplos](https://github.com/bluebill1049/react-hook-form/tree/master/examples)
-- [Demonstração](https://react-hook-form.com)
-- [Form Builder](https://react-hook-form.com/form-builder)
-- [FAQs](https://react-hook-form.com/faqs)
+- [Demonstração](https://react-hook-form.com/pt)
+- [Form Builder](https://react-hook-form.com/pt/form-builder)
+- [FAQs](https://react-hook-form.com/pt/faqs)
 
 ## Começo rápido
 
 ```jsx
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 function App() {
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
@@ -84,10 +85,18 @@ function App() {
 
 ## Contribuidores
 
-Um obrigado especial para estas pessoas incríveis. [[Seja um contribuidor](CONTRIBUTING.md)].
+Um obrigado especial para estas pessoas incríveis! [[Seja um contribuidor](CONTRIBUTING.md)].
 
 <a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
     <img src="https://opencollective.com/react-hook-form/contributors.svg?width=950" />
+</a>
+
+## Organizações
+
+Obrigado por esta organização maravilhosa! [[Contribuir](https://opencollective.com/react-hook-form/contribute)]
+
+<a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
+    <img src="https://opencollective.com/react-hook-form/organizations.svg?width=950" />
 </a>
 
 ## Patrocinadores

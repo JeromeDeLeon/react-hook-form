@@ -1,30 +1,32 @@
-import combineFieldValues from './combineFieldValues';
+import transformToNestObject from './transformToNestObject';
+import getDefaultValue from './getDefaultValue';
 import get from '../utils/get';
 import getPath from '../utils/getPath';
 import isEmptyObject from '../utils/isEmptyObject';
 import isUndefined from '../utils/isUndefined';
-import getDefaultValue from './getDefaultValue';
 import isObject from '../utils/isObject';
-import { FieldValue, FieldValues, FieldName } from '../types';
+import { DeepPartial, FieldValue, FieldValues, FieldName } from '../types';
 
 export default <FormValues extends FieldValues>(
   fieldValues: FormValues,
   fieldName: FieldName<FormValues>,
   watchFields: Set<FieldName<FormValues>>,
-  combinedDefaultValues: Partial<FormValues>,
-): FieldValue<FormValues> | Partial<FormValues> | undefined => {
+  combinedDefaultValues: DeepPartial<FormValues>,
+): FieldValue<FormValues> | DeepPartial<FormValues> | undefined => {
   let value;
+
+  watchFields.add(fieldName);
 
   if (isEmptyObject(fieldValues)) {
     value = undefined;
   } else if (!isUndefined(fieldValues[fieldName])) {
-    watchFields.add(fieldName);
     value = fieldValues[fieldName];
+    watchFields.add(fieldName);
   } else {
-    value = get(combineFieldValues(fieldValues), fieldName);
+    value = get(transformToNestObject(fieldValues), fieldName);
 
     if (!isUndefined(value)) {
-      getPath<FormValues>(fieldName, value).forEach(name =>
+      getPath<FormValues>(fieldName, value).forEach((name) =>
         watchFields.add(name),
       );
     }

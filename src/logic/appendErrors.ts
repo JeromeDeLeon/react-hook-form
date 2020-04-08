@@ -1,21 +1,21 @@
-import { FieldErrors, ValidateResult } from '../types';
+import { FieldError, FieldName, ValidateResult } from '../types';
 
 export default <FormValues>(
-  name: string,
+  name: FieldName<FormValues>,
   validateAllFieldCriteria: boolean,
-  errors: FieldErrors<FormValues>,
+  errors: Record<FieldName<FormValues>, FieldError>,
   type: string,
   message: ValidateResult,
 ) => {
   if (!validateAllFieldCriteria) {
     return {};
   }
-  const error = errors[name] || { types: {} };
+  const error = errors[name];
 
   return {
     ...error,
     types: {
-      ...error.types,
+      ...(error && error.types ? error.types : {}),
       [type]: message || true,
     },
   };

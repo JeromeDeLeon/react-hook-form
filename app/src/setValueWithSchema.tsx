@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 let renderCounter = 0;
@@ -25,6 +25,7 @@ const SetValueWithSchema: React.FC = () => {
     radio: string;
     select: string;
     multiple: string[];
+    requiredField: string,
   }>({
     validationSchema,
   });

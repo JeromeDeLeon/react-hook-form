@@ -27,24 +27,24 @@ Object {
     "type": "required",
   },
   "name": Object {
-    "message": "name is a min field",
-    "type": "min",
+    "message": "name is a required field",
+    "type": "required",
   },
 }
 `;
 
 exports[`validateWithSchema should return undefined when no error reported 1`] = `
 Object {
-  "fieldErrors": Object {
+  "errors": Object {
     "age": Object {
       "message": "age is a required field",
       "type": "required",
     },
     "name": Object {
-      "message": "name is a min field",
-      "type": "min",
+      "message": "name is a required field",
+      "type": "required",
     },
   },
-  "result": Object {},
+  "values": Object {},
 }
 `;

@@ -1,24 +1,23 @@
+import isHTMLElement from '../utils/isHTMLElement';
 import { EVENTS } from '../constants';
 import { Field } from '../types';
 
 export default function attachEventListeners({
   field,
-  validateAndStateUpdate,
+  handleChange,
   isRadioOrCheckbox,
 }: {
   field: Field;
   isRadioOrCheckbox: boolean;
-  validateAndStateUpdate?: Function;
+  handleChange?: EventListenerOrEventListenerObject;
 }): void {
   const { ref } = field;
 
-  if (!ref.addEventListener) {
-    return;
+  if (isHTMLElement(ref) && ref.addEventListener && handleChange) {
+    ref.addEventListener(
+      isRadioOrCheckbox ? EVENTS.CHANGE : EVENTS.INPUT,
+      handleChange,
+    );
+    ref.addEventListener(EVENTS.BLUR, handleChange);
   }
-
-  ref.addEventListener(
-    isRadioOrCheckbox ? EVENTS.CHANGE : EVENTS.INPUT,
-    validateAndStateUpdate,
-  );
-  ref.addEventListener(EVENTS.BLUR, validateAndStateUpdate);
 }
